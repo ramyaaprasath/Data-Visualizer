@@ -16,8 +16,6 @@ public class Main extends Application
     public static final int width = 1250;
     public static final int height = 600;
 
-    //private final ObservableList<Country> countryData = FXCollections.observableArrayList();
-
     @Override
     public void start(Stage stage) throws Exception
     {

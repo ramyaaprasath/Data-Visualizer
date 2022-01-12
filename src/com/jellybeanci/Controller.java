@@ -17,6 +17,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class Controller
 {
 
@@ -28,9 +29,16 @@ public class Controller
     @FXML
     private LineChart<?, ?> lineChart;
 
-    @FXML
-    private CategoryAxis x;
 
+
+    @FXML private AreaChart<?, ?> areaChart;
+
+   @FXML
+    private CategoryAxis x;
+    @FXML
+    private CategoryAxis x2;
+    @FXML
+    private CategoryAxis x3;
     @FXML
     private TextField textBox;
 
@@ -47,8 +55,8 @@ public class Controller
             {
                 if (input.toLowerCase().equals("execute order 66"))
                 {
-                    showMessage("Execute", "Executing", Alert.AlertType.CONFIRMATION);
-                } else if (input.toLowerCase().equals("do a barrel roll"))
+                    showMessage("Execute", "ok!", Alert.AlertType.CONFIRMATION);
+                } else if (input.toLowerCase().equals("done"))
                 {
                     update.play();
                 }
@@ -57,8 +65,7 @@ public class Controller
                     ArrayList<String> contList;
                     try
                     {
-                        buttonChangeText(btnGetData, "Fetching Data...");
-                        //contList = GetData.readFromWeb("https://opendata.ecdc.europa.eu/covid19/casedistribution/xml/");
+                        buttonChangeText(btnGetData, "Getting Data...");
                         contList = GetData.getDataFromAnywhere(input);
                         buttonChangeText(btnGetData, "Data Found Loading...");
                         Record.parse(contList);
@@ -74,7 +81,7 @@ public class Controller
             {
                 showMessage("Warning!", "Text Field can not be Empty!", Alert.AlertType.WARNING);
             }
-            buttonChangeText(btnGetData, "Fetch Data");
+            buttonChangeText(btnGetData, "Get Data");
             btnGetData.setDisable(false);
         };
         new Thread(r).start();
@@ -84,17 +91,6 @@ public class Controller
     {
         Platform.runLater(() -> button.setText(text));
     }
-
-/*
-    @FXML
-    protected void threadTestButton()
-    {
-        Platform.runLater(() -> {
-            // Update UI here.
-            btnGetData.setText(Math.random() + "");
-        });
-    }
-*/
 
     private void roll(double degree)
     {
@@ -129,12 +125,35 @@ public class Controller
             }
         });
     }
-
-    private SortedList<String> getCategories(ObservableList<Country> selectedCountries)
+    @FXML
+    protected void getSelectedCountries2()
+    {
+        Platform.runLater(() -> {
+            areaChart.getData().clear();
+            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            SortedList<String> categories = getCategories(selectedCountries);
+            x2.invalidateRange(categories);
+            x2.autosize();
+            for (Country country : selectedCountries)
+            {
+                XYChart.Series dataSeries = new XYChart.Series();
+                dataSeries.setName(country.getCode());
+                ObservableList<Record> recs = country.getRecordList();
+                int total = 0;
+                for (Record record : recs)
+                {
+                    total += record.getCases();
+                    dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
+                }
+                areaChart.getData().add(dataSeries);
+            }
+        });
+    }
+    private SortedList<String> getCategories(ObservableList<Country> selectedCountries2)
     {
 
         ObservableList<String> observableList = FXCollections.observableArrayList();
-        for (Country country : selectedCountries)
+        for (Country country : selectedCountries2)
         {
             ObservableList<Record> records = country.getRecordList();
             for (Record record : records)
@@ -153,7 +172,10 @@ public class Controller
     //
     @FXML
     private ListView<Country> countryListView;
-
+    @FXML
+    private ListView<Country> countryListView2;
+    @FXML
+    private ListView<Country> countryListView3;
     //
     // Table View
     //
@@ -194,6 +216,9 @@ public class Controller
         update.setCycleCount(360);
         update.setRate(1.2);
         update.setAutoReverse(false);
+        lineChart.setCreateSymbols(false);
+        areaChart.setCreateSymbols(false);
+
 
         //Table View
         countryName.setCellValueFactory(new PropertyValueFactory< >("name"));
@@ -228,12 +253,36 @@ public class Controller
             }
         });
         countryListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        countryListView2.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
+        {
+            @Override
+            public ListCell<Country> call(ListView<Country> lv)
+            {
+                return new ListCell<Country>()
+                {
+                    @Override
+                    public void updateItem(Country item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        if (item == null)
+                        {
+                            setText(null);
+                        } else
+                        {
+                            setText(item.getCode());
+                        }
+                    }
+                };
+            }
+        });
+        countryListView2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
     }
 
     private static void showMessage(String title, String message, Alert.AlertType alertType)
     {
         Platform.runLater(() -> {
-            // Update UI here.
+            //UI
             Alert alert = new Alert(alertType);
             alert.setTitle(title);
             alert.setHeaderText(null);
