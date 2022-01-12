@@ -3,4 +3,5 @@
 - Java FX
 - Jellybean library
 
-##
+Input : XML files or XML url
+Output : Line Graph
