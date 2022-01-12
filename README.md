@@ -4,4 +4,4 @@
 - Jellybean library
 
 Input  : XML files or XML url
-Output : Line Graph
+Output : Line Graph / Area Chart
