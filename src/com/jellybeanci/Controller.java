@@ -25,20 +25,24 @@ public class Controller
 
     @FXML
     private BorderPane borderPane;
-
     @FXML
     private LineChart<?, ?> lineChart;
+    @FXML
+    private ScatterChart<?, ?> scatterChart;
+    @FXML
+    private AreaChart<?, ?> areaChart;
+    @FXML
+    private BarChart<?, ?> barChart;
 
-
-
-    @FXML private AreaChart<?, ?> areaChart;
-
-   @FXML
+    @FXML
     private CategoryAxis x;
     @FXML
     private CategoryAxis x2;
     @FXML
     private CategoryAxis x3;
+    @FXML
+    private CategoryAxis x4;
+
     @FXML
     private TextField textBox;
 
@@ -142,10 +146,59 @@ public class Controller
                 int total = 0;
                 for (Record record : recs)
                 {
-                    total += record.getCases();
+                    total += record.getDeaths();
                     dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
                 }
                 areaChart.getData().add(dataSeries);
+            }
+        });
+    }
+    @FXML
+    protected void getSelectedCountries3()
+    {
+        Platform.runLater(() -> {
+            scatterChart.getData().clear();
+            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            SortedList<String> categories = getCategories(selectedCountries);
+            x3.invalidateRange(categories);
+            x3.autosize();
+            for (Country country : selectedCountries)
+            {
+                XYChart.Series dataSeries = new XYChart.Series();
+                dataSeries.setName(country.getCode());
+                ObservableList<Record> recs = country.getRecordList();
+                int total = 0;
+                for (Record record : recs)
+                {
+                    total += record.getCases();
+                    dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
+                }
+                scatterChart.getData().add(dataSeries);
+            }
+        });
+    }
+    @FXML
+    protected void getSelectedCountries4()
+    {
+        Platform.runLater(() -> {
+            barChart.getData().clear();
+            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            SortedList<String> categories = getCategories(selectedCountries);
+            x4.invalidateRange(categories);
+            x4.autosize();
+            for (Country country : selectedCountries)
+            {
+                XYChart.Series dataSeries = new XYChart.Series();
+                dataSeries.setName(country.getCode());
+                ObservableList<Record> recs = country.getRecordList();
+                int total = 0;
+                for (Record record : recs)
+                {
+                    total += record.getDeaths();
+                    dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
+                }
+
+                barChart.getData().add(dataSeries);
             }
         });
     }
@@ -176,6 +229,8 @@ public class Controller
     private ListView<Country> countryListView2;
     @FXML
     private ListView<Country> countryListView3;
+    @FXML
+    private ListView<Country> countryListView4;
     //
     // Table View
     //
@@ -276,6 +331,52 @@ public class Controller
             }
         });
         countryListView2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        countryListView3.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
+        {
+            @Override
+            public ListCell<Country> call(ListView<Country> lv)
+            {
+                return new ListCell<Country>()
+                {
+                    @Override
+                    public void updateItem(Country item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        if (item == null)
+                        {
+                            setText(null);
+                        } else
+                        {
+                            setText(item.getCode());
+                        }
+                    }
+                };
+            }
+        });
+        countryListView3.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        countryListView4.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
+        {
+            @Override
+            public ListCell<Country> call(ListView<Country> lv)
+            {
+                return new ListCell<Country>()
+                {
+                    @Override
+                    public void updateItem(Country item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        if (item == null)
+                        {
+                            setText(null);
+                        } else
+                        {
+                            setText(item.getCode());
+                        }
+                    }
+                };
+            }
+        });
+        countryListView4.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
     }
 

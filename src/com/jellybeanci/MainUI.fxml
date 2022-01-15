@@ -63,8 +63,8 @@
                                 </opaqueInsets>
                             </LineChart>
                             <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
-                                <ListView fx:id="countryListView" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
                                 <Button fx:id="btnShow" mnemonicParsing="false" onMouseClicked="#getSelectedCountries" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
                                 <HBox.margin>
                                     <Insets />
                                 </HBox.margin>
@@ -77,11 +77,11 @@
                 </Tab>
                 <Tab text="Area Chart">
                     <AnchorPane prefWidth="721.0">
-                        <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+                        <HBox layoutX="3.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="10.0">
                             <padding>
                                 <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                             </padding>
-                            <AreaChart fx:id="areaChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Cases" HBox.hgrow="ALWAYS">
+                            <AreaChart fx:id="areaChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Deaths" HBox.hgrow="ALWAYS">
                                 <xAxis>
                                     <CategoryAxis animated="false" prefWidth="595.0" fx:id="x2">
                                         <prefHeight>70.0</prefHeight>
@@ -95,8 +95,8 @@
                                 </opaqueInsets>
                             </AreaChart>
                             <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
-                                <ListView fx:id="countryListView2" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
                                 <Button fx:id="btnShow2" mnemonicParsing="false" onMouseClicked="#getSelectedCountries2" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView2" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
                                 <HBox.margin>
                                     <Insets />
                                 </HBox.margin>
@@ -107,7 +107,70 @@
                         </HBox>
                     </AnchorPane>
                 </Tab>
-
+                <Tab text="Scatter Chart">
+                    <AnchorPane prefWidth="721.0">
+                        <HBox layoutX="3.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="10.0">
+                            <padding>
+                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                            </padding>
+                            <ScatterChart fx:id="scatterChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Cases" HBox.hgrow="ALWAYS">
+                                <xAxis>
+                                    <CategoryAxis animated="false" prefWidth="595.0" fx:id="x3">
+                                        <prefHeight>70.0</prefHeight>
+                                    </CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="y3" side="LEFT" />
+                                </yAxis>
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                            </ScatterChart>
+                            <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
+                                <Button fx:id="btnShow3" mnemonicParsing="false" onMouseClicked="#getSelectedCountries3" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView3" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" />
+                                </padding>
+                            </VBox>
+                        </HBox>
+                    </AnchorPane>
+                </Tab>
+                <Tab text="Bar Chart">
+                    <AnchorPane prefWidth="721.0">
+                        <HBox layoutX="3.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="10.0">
+                            <padding>
+                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                            </padding>
+                            <BarChart fx:id="barChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Deaths" HBox.hgrow="ALWAYS">
+                                <xAxis>
+                                    <CategoryAxis animated="false" prefWidth="595.0" fx:id="x4">
+                                        <prefHeight>70.0</prefHeight>
+                                    </CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="y4" side="LEFT" />
+                                </yAxis>
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                            </BarChart>
+                            <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
+                                <Button fx:id="btnShow4" mnemonicParsing="false" onMouseClicked="#getSelectedCountries4" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView4" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" />
+                                </padding>
+                            </VBox>
+                        </HBox>
+                    </AnchorPane>
+                </Tab>
             </TabPane>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
