@@ -64,7 +64,7 @@
                             </LineChart>
                             <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
                                 <Button fx:id="btnShow" mnemonicParsing="false" onMouseClicked="#getSelectedCountries" prefHeight="25.0" prefWidth="60.0" text="Show" />
-                                <ListView fx:id="countryListView" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
+                                <ListView fx:id="countryListView1" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
                                 <HBox.margin>
                                     <Insets />
                                 </HBox.margin>

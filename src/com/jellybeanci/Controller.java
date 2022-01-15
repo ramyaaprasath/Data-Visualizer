@@ -74,7 +74,10 @@ public class Controller
                         buttonChangeText(btnGetData, "Data Found Loading...");
                         Record.parse(contList);
                         tableView.setItems(Country.getObservableList());
-                        countryListView.setItems(Country.getObservableList().sorted());
+                        countryListView1.setItems(Country.getObservableList().sorted());
+                        countryListView2.setItems(Country.getObservableList().sorted());
+                        countryListView3.setItems(Country.getObservableList().sorted());
+                        countryListView4.setItems(Country.getObservableList().sorted());
                     }
                     catch (IOException e)
                     {
@@ -110,7 +113,7 @@ public class Controller
     {
         Platform.runLater(() -> {
             lineChart.getData().clear();
-            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            ObservableList<Country> selectedCountries = countryListView1.getSelectionModel().getSelectedItems();
             SortedList<String> categories = getCategories(selectedCountries);
             x.invalidateRange(categories);
             x.autosize();
@@ -134,7 +137,7 @@ public class Controller
     {
         Platform.runLater(() -> {
             areaChart.getData().clear();
-            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            ObservableList<Country> selectedCountries = countryListView2.getSelectionModel().getSelectedItems();
             SortedList<String> categories = getCategories(selectedCountries);
             x2.invalidateRange(categories);
             x2.autosize();
@@ -158,7 +161,7 @@ public class Controller
     {
         Platform.runLater(() -> {
             scatterChart.getData().clear();
-            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            ObservableList<Country> selectedCountries = countryListView3.getSelectionModel().getSelectedItems();
             SortedList<String> categories = getCategories(selectedCountries);
             x3.invalidateRange(categories);
             x3.autosize();
@@ -170,7 +173,7 @@ public class Controller
                 int total = 0;
                 for (Record record : recs)
                 {
-                    total += record.getCases();
+                    total += record.getDeaths();
                     dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
                 }
                 scatterChart.getData().add(dataSeries);
@@ -182,7 +185,7 @@ public class Controller
     {
         Platform.runLater(() -> {
             barChart.getData().clear();
-            ObservableList<Country> selectedCountries = countryListView.getSelectionModel().getSelectedItems();
+            ObservableList<Country> selectedCountries = countryListView4.getSelectionModel().getSelectedItems();
             SortedList<String> categories = getCategories(selectedCountries);
             x4.invalidateRange(categories);
             x4.autosize();
@@ -194,7 +197,7 @@ public class Controller
                 int total = 0;
                 for (Record record : recs)
                 {
-                    total += record.getDeaths();
+                    total += record.getCases();
                     dataSeries.getData().add(new XYChart.Data<>(record.getDateString(), total));
                 }
 
@@ -224,7 +227,7 @@ public class Controller
     // List View
     //
     @FXML
-    private ListView<Country> countryListView;
+    private ListView<Country> countryListView1;
     @FXML
     private ListView<Country> countryListView2;
     @FXML
@@ -285,7 +288,7 @@ public class Controller
         mortality.setCellValueFactory(new PropertyValueFactory<>("mortality"));
         attackRate.setCellValueFactory(new PropertyValueFactory<>("attackRate"));
         //List View
-        countryListView.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
+        countryListView1.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
         {
             @Override
             public ListCell<Country> call(ListView<Country> lv)
@@ -307,7 +310,7 @@ public class Controller
                 };
             }
         });
-        countryListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        countryListView1.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         countryListView2.setCellFactory(new Callback<ListView<Country>, ListCell<Country>>()
         {
             @Override
