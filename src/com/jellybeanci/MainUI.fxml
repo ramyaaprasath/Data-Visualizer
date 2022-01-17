@@ -171,6 +171,70 @@
                         </HBox>
                     </AnchorPane>
                 </Tab>
+                <Tab text="Stacked Area Chart">
+                    <AnchorPane prefWidth="721.0">
+                        <HBox layoutX="3.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="10.0">
+                            <padding>
+                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                            </padding>
+                            <StackedAreaChart fx:id="StackedAreaChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Deaths" HBox.hgrow="ALWAYS">
+                                <xAxis>
+                                    <CategoryAxis animated="false" prefWidth="595.0" fx:id="x5">
+                                        <prefHeight>70.0</prefHeight>
+                                    </CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="y5" side="LEFT" />
+                                </yAxis>
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                            </StackedAreaChart>
+                            <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
+                                <Button fx:id="btnShow5" mnemonicParsing="false" onMouseClicked="#getSelectedCountries5" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView5" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" />
+                                </padding>
+                            </VBox>
+                        </HBox>
+                    </AnchorPane>
+                </Tab>
+                <Tab text="Stacked Line Chart">
+                    <AnchorPane prefWidth="721.0">
+                        <HBox layoutX="3.0" layoutY="10.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="10.0">
+                            <padding>
+                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                            </padding>
+                                    <LineChart fx:id="LineChart" horizontalGridLinesVisible="false" maxWidth="100000" prefHeight="428.0" prefWidth="684.0" title="Total Deaths" HBox.hgrow="ALWAYS">
+                                <xAxis>
+                                    <CategoryAxis animated="false" prefWidth="595.0" fx:id="x6">
+                                        <prefHeight>70.0</prefHeight>
+                                    </CategoryAxis>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis fx:id="y6" side="LEFT" />
+                                </yAxis>
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                            </LineChart>
+                            <VBox alignment="TOP_CENTER" maxWidth="120.0" spacing="5.0" HBox.hgrow="NEVER">
+                                <Button fx:id="btnShow6" mnemonicParsing="false" onMouseClicked="#getSelectedCountries6" prefHeight="25.0" prefWidth="60.0" text="Show" />
+                                <ListView fx:id="countryListView6" maxWidth="1.7976931348623157E308" minWidth="75.0" VBox.vgrow="ALWAYS" />
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" />
+                                </padding>
+                            </VBox>
+                        </HBox>
+                    </AnchorPane>
+                </Tab>
             </TabPane>
             <BorderPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
