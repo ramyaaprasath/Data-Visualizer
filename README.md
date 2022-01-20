@@ -1,10 +1,10 @@
 # Data-Visualizer 📊
 - JDK 11
 - Java FX
-- Jellybean library
-
+-
 ## Input 🔣
-XML files or XML url <br>
+XML files or XML url
+
 ## Output 😁
 Line Graph (Stacked and Unstacked), Area Chart, Bar Chart, Scatter Plot, Stacked Area Chart
 
